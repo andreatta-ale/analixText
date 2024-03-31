@@ -75,25 +75,23 @@ Artificial intelligence and machine learning are fundamental in enhancing detect
 The sensors, obtained from Metglas 2826MB3 by Metglas Company, were fabricated into dimensions of 5 mm x 1 mm x 28 μm for optimal vibration modes. They were coated with chrome and gold using magnetron sputtering. Measurements were conducted using electromagnetic coils connected to a Keysight E5061B network analyzer and a DC power source, that reads the vibrational behavior of the sensors as a response to de signal from the analizer coils, as shown in \autoref{fig:sensor_reading}.
 
 
-![Representative model of sensor reading.\label{fig:sensor_reading}](Aransay_schema.png)
-<figcaption>Representative model of the detection system using magnetoelastic sensors and network analyze. Adapted from `@aransay74:2020`.</figcaption><br>
-  
+![Representative model of the detection system using magnetoelastic sensors and network analyze. Adapted from `@aransay74:2020`.\label{fig:sensor_reading}](Aransay_schema.png)
+
 
 A dataset comprising two groups, test and control, each containing data from three sensors, totaling 6 sensors, was assembled. Each sensor underwent a 30-minute measurement cycle using a network analyzer, with data collected every 5 minutes, including t = 0, resulting in 7 subsets of data per sensor, with 201 signal and frequency readings per group. The frequency range tested was between 430,000 Hz and 460,000 Hz, encompassing the characteristic resonance frequency of the sensor material. The final dataset consisted of frequency and signal data from all sensor cycles for each group, totaling 8442 rows. 
 
 
 ![Schematic view of data acquisition. \label{fig:data_acquisition}](Arch.png)
-<figcaption>Schematic view of data acquisition.</figcaption><br>
+
 
 A hash column was created as a reference field for analysis, combining group (test or control), sensor number, and time of signal acquisition (run). A developed software processed frequency and signal data, capturing values around the estimated peak and fitting an asymmetric Lorentzian curve. The minimum point of this curve was the point of interest for analysis, as it measured the frequency shift used to identify sensor mass changes, indicating the presence of new materials like viruses. Monte Carlo simulation evaluated the statistical significance of the points of interest, with 1000 iterations for each sensor in both groups at each time interval. The resulting dataset contained minimized frequency values and their uncertainties, enabling the plotting of average frequency graphs over time. 
 
 ![Signal versus frequency and points of interest. \label{fig:points_of_interest}](T-4-30-Points_of_interest.png)
-<figcaption>Signal versus frequency and points of interest.</figcaption><br>
 
 Lagergren's equation was employed to fit frequency data over time, facilitating precise comparison of frequency shifts between test and control sensors. Bootstrap method was applied to obtain randomly selected data points for classifiers, with 85% of data used for training and the remaining 15% for testing. Seven different classifiers were trained, including logistic regression, decision tree, random forest, Ada boost, gradient boosting, naive Bayes, k-nearest neighbors, and support vector machines with five-fold cross-validation. 
 
 ![Minimized frequency over time and frequency shift for sensor 4. \label{fig:lagergren_T4}](Lagergren_T4.png)
-<figcaption>Minimized frequency over time and frequency shift for sensor 4.</figcaption><br>
+
 
 
 # Usage
@@ -106,12 +104,12 @@ In order to use the software, network analizer results must be inside a folder, 
 For the case studied in this project, the adjustment of network analyzer data to the asymmetric Lorentzian model for all sensor datasets resulted in a clustering of parameters from each modeling iteration, accompanied by uncertainty values. This served as the basis for a Monte Carlo simulation, where parameters and uncertainties were applied, producing a dataset optimized for minimum signal value at a specific frequency. Subsequent analysis revealed frequency shifts in test sensor data, which were then adjusted to the Lagergren equation model to obtain $\Delta{f}$ values. These shifts were observable in graphs depicting data curves adjusted to the Lagergren model, highlighting distinctions between sensor groups.
 
 ![Frequency shift by group. \label{fig:freq_shift_by_group}](freq_shift_by_group.png)
-<figcaption>Frequency shift by group.</figcaption><br>
+
 
 The Bootstrap method was employed to generate a larger dataset, showcasing significant separation between control and test data means, despite the presence of an indistinct zone. This expanded dataset was utilized to train a model comprising seven classifiers, including SVM classifiers with three methods. The model's performance was evaluated using a confusion matrix, revealing overfitting due to the small original dataset. Despite limitations in data availability, the proposed strategy proved effective in differentiating sensor groups, underscoring the importance of predictive technologies in rapidly diagnosing viral diseases.
 
 ![Frequency shift by group - Bootstrapped. \label{fig:freq_shift_by_group_bsd}](freq_shift_by_group-bsd.png)
-<figcaption>Frequency shift by group - Bootstrapped data.</figcaption><br>
+
 
 Moving forward, this study proposes further exploration by extrapolating analyses to other viruses beyond SARS-CoV-2, and extending applications to detecting harmful bacteria in both medical and veterinary contexts. Additionally, experiments on sensors of different formats are suggested to assess the computational approach's sensitivity to SME geometry variations, offering avenues for future research and development in disease detection and classification. To do so, the source code can be adapted and tested under different sensoring and measurement systems.
 
@@ -166,7 +164,7 @@ result_folder = 'res'
 folder = os.path.join(folder_path, result_folder)
 
 if os.path.isdir(folder):
-    print('Result folder already exists, cleaning...\n (If an error occurs, consider remove Result folder manually.)')
+    print('Result folder already exists, cleaning...')
     try:
         shutil.rmtree(folder)
     except OSError as e:
@@ -174,9 +172,9 @@ if os.path.isdir(folder):
 os.mkdir(folder)
 print('Result folder created.')
 
-print('---------------------------------------------------------------------------\n')
+print('-----------------------------------------\n')
 print('Result folder path: ', folder)
-print('---------------------------------------------------------------------------\n')
+print('-----------------------------------------\n')
 
 ### Logging
 log_file = os.path.join(folder, 'log.txt')
@@ -186,17 +184,17 @@ with open(log_file, 'w') as f:
 ```
 
 
-    Folder path:  C:/Users/my_user/Documents/Analix/external-agents-detector/app/data/source_data
+    Folder path:  C:/Users/my_user/Documents/Analix/...
     Result folder already exists, cleaning...
-     (If an error occurs, consider remove Result folder manually.)
     Result folder created.
-    ---------------------------------------------------------------------------
+    -----------------------------------------
     
-    Result folder path:  C:/Users/my_user/Documents/Analix/external-agents-detector/app/data/source_data\res
-    ---------------------------------------------------------------------------
+    Result folder path:  C:/Users/my_user/Documents/Analix/...
+    -----------------------------------------
     
     
-#### Acquiring individual files addresses. Splits into group, sensor and time, adding a hash column used for filtering data.
+#### Acquiring individual files addresses. 
+Splits into group, sensor and time, adding a hash column used for filtering data.
 
 
 ```python
@@ -218,94 +216,24 @@ addresses = files.rename(columns={'Path': 'address'}).sort_values(
     ascending=True
 )
 
-print('---------------------------------------------------------------------------\n')
+print('-----------------------------------------\n')
 
 text = 'Analysis'
 
 print(text + '\n')
 
-print('---------------------------------------------------------------------------\n')
+print('-----------------------------------------\n')
 
 addresses.head()
 ```
 
-    ---------------------------------------------------------------------------
+    -----------------------------------------
     
     Analysis
     
-    ---------------------------------------------------------------------------
+    -----------------------------------------
     
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>address</th>
-      <th>group</th>
-      <th>sensor</th>
-      <th>time</th>
-      <th>hash</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>C:/Users/my_user/Documents/Analix/external-agents-det...</td>
-      <td>C</td>
-      <td>1</td>
-      <td>0</td>
-      <td>C-1-0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>C:/Users/my_user/Documents/Analix/external-agents-det...</td>
-      <td>C</td>
-      <td>1</td>
-      <td>5</td>
-      <td>C-1-5</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>C:/Users/my_user/Documents/Analix/external-agents-det...</td>
-      <td>C</td>
-      <td>1</td>
-      <td>10</td>
-      <td>C-1-10</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>C:/Users/my_user/Documents/Analix/external-agents-det...</td>
-      <td>C</td>
-      <td>1</td>
-      <td>15</td>
-      <td>C-1-15</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>C:/Users/my_user/Documents/Analix/external-agents-det...</td>
-      <td>C</td>
-      <td>1</td>
-      <td>20</td>
-      <td>C-1-20</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+![Dataframe with collected addresses. \label{fig:addresses_df}](addresses_df.png)
 
 #### This cell provides intel on quantity of files to be scanned:
 
@@ -328,7 +256,9 @@ addresses = addresses.reset_index(drop=True).set_index('address')
     Space:  42
     
 
-#### Scans the addresses data frame, reads data of each file and assembles them into a combined data frame, that contains frequency and signal data. Also, rescales frequency values to signal's order of magnitude (multiplied by $1 \times 10^{-6}$)
+#### Scans the addresses data frame
+Reads data of each file and assembles them into a combined data frame, that contains frequency and signal data. 
+Also, rescales frequency values to signal's order of magnitude (multiplied by $1 \times 10^{-6}$)
 
 
 ```python
@@ -356,88 +286,11 @@ combined_df['frequency'] = combined_df['frequency'] * 1.e-6
 combined_df.head()
 ```
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+![Dataframe with fist data input. \label{fig:first_data}](first_data_input.png)
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+Split Lorentzian function, used to fit data to model:
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>frequency</th>
-      <th>signal</th>
-      <th>group</th>
-      <th>sensor</th>
-      <th>time</th>
-      <th>hash</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.4200</td>
-      <td>0.557114</td>
-      <td>C</td>
-      <td>1</td>
-      <td>0</td>
-      <td>C-1-0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.4202</td>
-      <td>0.558667</td>
-      <td>C</td>
-      <td>1</td>
-      <td>0</td>
-      <td>C-1-0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.4204</td>
-      <td>0.560101</td>
-      <td>C</td>
-      <td>1</td>
-      <td>0</td>
-      <td>C-1-0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.4206</td>
-      <td>0.560883</td>
-      <td>C</td>
-      <td>1</td>
-      <td>0</td>
-      <td>C-1-0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.4208</td>
-      <td>0.561223</td>
-      <td>C</td>
-      <td>1</td>
-      <td>0</td>
-      <td>C-1-0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-#### Split Lorentzian function, used to fit data to model
-
-$$
-f(x; A, \mu, \sigma, \sigma_r) = \frac{2 A}{\pi (\sigma+\sigma_r)} \big[\frac{\sigma^2}{(x - \mu)^2 + \sigma^2} * H(\mu-x) + \frac{\sigma_r^2}{(x - \mu)^2 + \sigma_r^2} * H(x-\mu)\big] + (m x + b)
-$$
+$f(x; A, \mu, \sigma, \sigma_r) = \frac{2 A}{\pi (\sigma+\sigma_r)} \big[\frac{\sigma^2}{(x - \mu)^2 + \sigma^2} * H(\mu-x) + \frac{\sigma_r^2}{(x - \mu)^2 + \sigma_r^2} * H(x-\mu)\big] + (m x + b)$
 
 Applies fitting model (Lorentzian) to each experimental dataset, retrieving a evaluation dataset based on the model. After fitting, applies an optimization function over a Monte Carlo Simulation to find the interesting point: the minimized frequency used to evaluate delocation on passing time of experiment
 
@@ -461,7 +314,8 @@ def SplitLorentzianFunc(x, aux):
     linear_func = (aux[4] * x + aux[5])
 
     # Return the sum of the Lorentzian function and the linear function
-    return (amplitude * ((lower_half * step_lower) + (upper_half * step_upper))) + linear_func
+    return (amplitude * ((lower_half * step_lower) + \ 
+        (upper_half * step_upper))) + linear_func
 
 def create_evaluate_df(x_eval, y_eval, hashed):
     evaluate_df = pd.DataFrame(x_eval, columns=['x_eval'])
@@ -506,8 +360,8 @@ def process_data(combined_df, log_file):
 
         ### Logging
 
-        lmfit_report = f'\n{str(datetime.now())} - LMFIT result report {i} \n' _
-          + str(result.fit_report(min_correl=0.25))
+        lmfit_report = f'\n{str(datetime.now())} - LMFIT result report {i} \n' + \
+            str(result.fit_report(min_correl=0.25))
 
         with open(log_file, 'a') as f:
             f.write(lmfit_report)
@@ -520,8 +374,12 @@ def process_data(combined_df, log_file):
         evaluate_df['y_eval'] = y_eval
         evaluate_df['hash'] = hashed
         
-        plot_x = evaluate_df['x_eval'].loc[evaluate_df['y_eval'] == evaluate_df['y_eval'].min()]
-        plot_y = evaluate_df['y_eval'].loc[evaluate_df['y_eval'] == evaluate_df['y_eval'].min()]
+        plot_x = evaluate_df['x_eval'].loc[
+            evaluate_df['y_eval'] == evaluate_df['y_eval'].min()
+        ]
+        plot_y = evaluate_df['y_eval'].loc[
+            evaluate_df['y_eval'] == evaluate_df['y_eval'].min()
+        ]
 
         # Min point
         minimized_freq = []
@@ -570,7 +428,9 @@ def process_data(combined_df, log_file):
             j = j + 1
 
         minimized_freq = np.concatenate(minimized_freq).ravel()
-        minimized_freq = minimized_freq[(minimized_freq > 0.43) & (minimized_freq < 0.444)]
+        minimized_freq = minimized_freq[
+            (minimized_freq > 0.43) & (minimized_freq < 0.444)
+        ]
         
         minimized_freq_mean = np.array(minimized_freq).mean()
         minimized_freq_std = np.array(minimized_freq).std()
@@ -591,7 +451,13 @@ def process_data(combined_df, log_file):
         print('\n')
         print('----- Results -----')
         
-        def create_result_table(minimized_freq_mean, minimized_freq_std, minimized_freq_std_err, freq, pfloat):
+        def create_result_table(
+            minimized_freq_mean, 
+            minimized_freq_std, 
+            minimized_freq_std_err, 
+            freq, 
+            pfloat
+        ):
             result_table = [
                 ['Optimized frequency mean (fmin)', minimized_freq_mean],
                 ['Optimized frequency standard deviation (fmin)', minimized_freq_std],
@@ -612,7 +478,8 @@ def process_data(combined_df, log_file):
         
         ### Logging
         
-        variables_report = f'{datetime.now()} - Results {i} \n' + str(tabulate(result_table)) + '\n'
+        variables_report = f'{datetime.now()} - Results {i} \n' + \
+            str(tabulate(result_table)) + '\n'
         
         with open(log_file, 'a') as f:
             f.write(variables_report)
@@ -630,7 +497,11 @@ def process_data(combined_df, log_file):
             grid=True, 
             legend=True
         )
-        ax.set_title(label = 'Initial data ' + hashed, pad=20, fontdict={'fontsize':20})
+        ax.set_title(
+            label = 'Initial data ' + hashed, 
+            pad=20, 
+            fontdict={'fontsize':20}
+        )
         ax.set_xlabel('Frequency [MHz]')
         ax.set_ylabel('Signal')
         plt.show()
@@ -651,7 +522,11 @@ def process_data(combined_df, log_file):
             verticalalignment='baseline'
         ) 
         plt.legend(loc='best')
-        plt.title('Accuracy between frequency mean LMFIT and SMC optimized frequency mean', fontsize=20)
+        plt.title(
+            'Accuracy between frequency mean LMFIT and ' + \
+            'SMC optimized frequency mean', 
+            fontsize=20
+        )
         plt.show()
         
         # Fit model data plot    
@@ -668,7 +543,9 @@ def process_data(combined_df, log_file):
             label='Original data minimum frequency'
         )
         
-        labels = evaluate_df['hash'].loc[evaluate_df['y_eval'] == evaluate_df['y_eval'].min()]
+        labels = evaluate_df['hash'].loc[
+            evaluate_df['y_eval'] == evaluate_df['y_eval'].min()
+        ]
         
         plt.plot(
             plot_x, 
@@ -689,7 +566,11 @@ def process_data(combined_df, log_file):
         plt.xlabel('Frequency [MHz]')
         plt.ylabel('Signal')
         plt.legend(loc='best')
-        plt.title('Signal vs frequency: Lorentz function fit and points of interest '+ hashed, fontsize=20)
+        plt.title(
+            'Signal vs frequency: ' + \
+            'Lorentz function fit and points of interest '+ hashed, 
+            fontsize=20
+        )
         plt.grid(True)
         plt.show()
 
@@ -713,7 +594,7 @@ def process_data(combined_df, log_file):
     return eval_df, param_df
 ```
 
-##### Running the model builder
+##### Running the model builder:
 
 
 ```python
@@ -740,7 +621,8 @@ Fist outputs:
         sigma:      0.00229330 +/- 3.7278e-05 (1.63%) (init = 0.0025)
         sigma_r:    0.00216150 +/- 2.9597e-05 (1.37%) (init = 0.0025)
         fwhm:       0.00445480 +/- 4.0914e-05 (0.92%) == 'sigma+sigma_r'
-        height:    -0.09367237 +/- 8.2562e-04 (0.88%) == '2*amplitude/3.1415927/max(0.0000000, (sigma+sigma_r))'
+        height:    -0.09367237 +/- 8.2562e-04 (0.88%) == 
+            '2*amplitude/3.1415927/max(0.0000000, (sigma+sigma_r))'
         slope:     -4.08629682 +/- 0.23477583 (5.75%) (init = 0)
         intercept:  2.36979826 +/- 0.10330544 (4.36%) (init = 0.4819135)
     [[Correlations]] (unreported correlations are < 0.250)
@@ -768,12 +650,6 @@ Fist outputs:
     Optimized frequency mean with uncertainties    439120+/-21
     Accuracy of estimated frequency mean / SMC     0.9999343005633774
     ---------------------------------------------  ----------------------
-    
-    
-    
-
-
-    <Figure size 640x480 with 0 Axes>
 
    
 ![png](output_17_2.png)
@@ -790,7 +666,7 @@ Fist outputs:
     (...)
 
 
-#### Applies a Lagergren model over minimized data in order to obtain a model for frequency decay on time and provides a detailed report on fit params of the model. 
+Applies a Lagergren model over minimized data in order to obtain a model for frequency decay on time and provides a detailed report on fit params of the model. 
 As result of this process, it is possilbe to estimate frequency shift of each time instance.
 
 
@@ -816,16 +692,30 @@ for sensor in sensors:
         label_group = ' - Test'
         
     df = complete.loc[(complete.group == g[0]) & (complete.sensor == sensor)]
-    df.plot(x='time',y='minimized_freq_mean',kind='scatter',yerr='minimized_freq_std',
-        figsize=(15,8),xlabel='Tempo [min]',ylabel = 'Média da frequência minimizada [MHz]',
-        title = 'Sensor ' + sensor + label_group)
+    df.plot(
+        x='time',
+        y='minimized_freq_mean',
+        kind='scatter',
+        yerr='minimized_freq_std',
+        figsize=(15,8),
+        xlabel='Tempo [min]',
+        ylabel = 'Média da frequência minimizada [MHz]',
+        title = 'Sensor ' + sensor + label_group
+    )
     plt.ticklabel_format(useOffset=False)
     plt.show()
+    
     # Fit the function f(f0,a,c) = f0 * (1 - a * (1 - np.exp(-c * t)))
     t = df.time 
     y = df.minimized_freq_mean
     e = df.minimized_freq_std
-    popt, pcov = curve_fit(fit_model, t, y, absolute_sigma=True, maxfev=100000)
+    popt, pcov = curve_fit(
+        fit_model, 
+        t, 
+        y, 
+        absolute_sigma=True, 
+        maxfev=100000
+    )
     perr = np.sqrt(np.diag(pcov))
     f0 = popt[0]
     a = popt[1]
@@ -850,11 +740,13 @@ for sensor in sensors:
         shifts_values.append(shift_value)
         shifts_std.append(shift_std)
     
-    df_aux           = pd.DataFrame(columns=['hash','shift', 'shift_value','shift_std'])
-    df_aux['hash']   = df.index
-    df_aux['shift']  = shifts
-    df_aux['shift_value']  = shifts_values
-    df_aux['shift_std']  = shifts_std
+    df_aux = pd.DataFrame(
+        columns=['hash','shift', 'shift_value','shift_std']
+    )
+    df_aux['hash'] = df.index
+    df_aux['shift'] = shifts
+    df_aux['shift_value'] = shifts_values
+    df_aux['shift_std'] = shifts_std
     df_shift = pd.concat([df_shift, df_aux],ignore_index=True)
     t30  = ufloat(df.time[-1],df.minimized_freq_std[-1])
     f_t30 = f0uf * (1 - auf * (1 - exp(-cuf * t30)))
@@ -864,15 +756,27 @@ for sensor in sensors:
     ax = plt.axes()
     ax.scatter(t, y, label='Raw data')
     ax.errorbar(t, y, yerr=e,fmt="o")
-    ax.plot(t,fit_model(t, *popt),'k',label=f'Fitted curve: f0={f0:.4f}, a={a:.4f}, c={c:.4f}')
+    ax.plot(
+        t,
+        fit_model(t, *popt),
+        'k',
+        label=f'Fitted curve: f0={f0:.4f}, a={a:.4f}, c={c:.4f}'
+        )
     ax.set_title(f'Lagergren - Sensor {sensor} {label_group}')
     ax.set_ylabel('Minimized frequency mean [MHz]')
     ax.set_xlabel('Time')
     ax.legend()
     ax.ticklabel_format(useOffset=False)
     plt.legend()
-    plt.text(x=min(t),y=min(y),s=f'Frequence shift [Hz]:    {shift30:.8u}',horizontalalignment='left',verticalalignment='baseline') 
+    plt.text(
+        x=min(t),
+        y=min(y),
+        s=f'Frequence shift [Hz]: {shift30:.8u}',
+        horizontalalignment='left',
+        verticalalignment='baseline'
+    ) 
     plt.show()   
+
     print(f'Summary - Sensor {sensor} {label_group}')
     result_table2 = [
         ['Parameter f0', f'{f0uf:.4u}'],
@@ -882,8 +786,24 @@ for sensor in sensors:
         ['Frequency shift [Hz]',f'{shift30:.8u}']
     ]
     print(str(tabulate(result_table2)))  
-    df_values = df[['group','sensor','time','y_eval','minimized_freq_mean','minimized_freq_std']]
-    headers = ['Group','Sensor','Time','Signal fit','Minimized frequency mean [MHz]','Std Dev']
+    df_values = df[
+        [
+            'group',
+            'sensor',
+            'time',
+            'y_eval',
+            'minimized_freq_mean',
+            'minimized_freq_std'
+        ]
+    ]
+    headers = [
+        'Group',
+        'Sensor',
+        'Time',
+        'Signal fit',
+        'Minimized frequency mean [MHz]',
+        'Std Dev'
+    ]
     tablefmt='psql'
     values_table = tabulate(df_values,headers=headers,tablefmt=tablefmt)
     print(values_table)
@@ -891,7 +811,18 @@ for sensor in sensors:
     print(result.fit_report())
 
 df_shift = df_shift.set_index(['hash'])
-complete_shifts = pd.merge(complete[['group','sensor','time']],df_shift,on='hash', how='left')
+complete_shifts = pd.merge(
+    complete[
+        [
+            'group',
+            'sensor',
+            'time'
+        ]
+    ],
+    df_shift,
+    on='hash', 
+    how='left'
+)
 ```
 
 ![png](output_22_0.png)
@@ -908,18 +839,6 @@ complete_shifts = pd.merge(complete[['group','sensor','time']],df_shift,on='hash
     Frequency t = 30 [MHz]  0.439112716+/-0.000005673
     Frequency shift [Hz]    -6.9639640+/-4.2551698
     ----------------------  -------------------------
-    +--------+---------+----------+--------+--------------+----------------------------------+-------------+
-    |        | Group   |   Sensor |   Time |   Signal fit |   Minimized frequency mean [MHz] |     Std Dev |
-    |--------+---------+----------+--------+--------------+----------------------------------+-------------|
-    | C-1-0  | C       |        1 |      0 |     0.481844 |                         0.43912  | 2.13376e-05 |
-    | C-1-5  | C       |        1 |      5 |     0.482087 |                         0.439114 | 5.55112e-17 |
-    | C-1-10 | C       |        1 |     10 |     0.482528 |                         0.439115 | 9.81741e-06 |
-    | C-1-15 | C       |        1 |     15 |     0.48274  |                         0.439116 | 1.24272e-05 |
-    | C-1-20 | C       |        1 |     20 |     0.482532 |                         0.439107 | 3.67394e-05 |
-    | C-1-25 | C       |        1 |     25 |     0.48249  |                         0.439114 | 1.11022e-16 |
-    | C-1-30 | C       |        1 |     30 |     0.482341 |                         0.439114 | 5.55112e-17 |
-    +--------+---------+----------+--------+--------------+----------------------------------+-------------+
-    
     
     [[Model]]
         Model(fit_model)
@@ -963,8 +882,10 @@ data_to_submit = analysis_data.values.tolist()
 # Load the trained model
 def select_file():
     root = tk.Tk()
-    root.withdraw()  # to hide the extra Tkinter window
-    file_path = filedialog.askopenfilename()  # opens the file explorer and saves the selected file path
+    # to hide the extra Tkinter window
+    root.withdraw()  
+    # opens the file explorer and saves the selected file path
+    file_path = filedialog.askopenfilename() 
     return file_path
 
 model_filename_path = select_file()
@@ -988,4 +909,3 @@ The authors gratefully acknowledge the Coordination for the Improvement of Highe
 
 
 # References
-
