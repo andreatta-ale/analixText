@@ -75,7 +75,7 @@ Artificial intelligence and machine learning are fundamental in enhancing detect
 The sensors, obtained from Metglas 2826MB3 by Metglas Company, were fabricated into dimensions of 5 mm x 1 mm x 28 μm for optimal vibration modes. They were coated with chrome and gold using magnetron sputtering. Measurements were conducted using electromagnetic coils connected to a Keysight E5061B network analyzer and a DC power source, that reads the vibrational behavior of the sensors as a response to de signal from the analizer coils, as shown in \autoref{fig:sensor_reading}.
 
 
-![Representative model of the detection system using magnetoelastic sensors and network analyze. Adapted from `@aransay74:2020`.\label{fig:sensor_reading}](Aransay_schema.png)
+![Representative model of the detection system using magnetoelastic sensors and network analyze. Adapted from [@aransay74:2020].\label{fig:sensor_reading}](Aransay_schema.png)
 
 
 A dataset comprising two groups, test and control, each containing data from three sensors, totaling 6 sensors, was assembled. Each sensor underwent a 30-minute measurement cycle using a network analyzer, with data collected every 5 minutes, including t = 0, resulting in 7 subsets of data per sensor, with 201 signal and frequency readings per group. The frequency range tested was between 430,000 Hz and 460,000 Hz, encompassing the characteristic resonance frequency of the sensor material. The final dataset consisted of frequency and signal data from all sensor cycles for each group, totaling 8442 rows. 
