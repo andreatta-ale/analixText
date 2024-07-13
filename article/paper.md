@@ -39,10 +39,10 @@ authors:
 
 affiliations:
   - name: Graduate Program of Materials Science and Engineering, University of Caxias do Sul, Brazil
-   index: 1
+    index: 1
 
   - name: Biotechnology Institute, University of Caxias do Sul, Brazil
-   index: 2
+    index: 2
 date: 01 April 2024
 bibliography: paper.bib
 ---
