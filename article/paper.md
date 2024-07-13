@@ -38,10 +38,10 @@ authors:
     affiliation: 1
 
 affiliations:
- - name: Graduate Program of Materials Science and Engineering, University of Caxias do Sul, Brazil
+  - name: Graduate Program of Materials Science and Engineering, University of Caxias do Sul, Brazil
    index: 1
 
- - name: Biotechnology Institute, University of Caxias do Sul, Brazil
+  - name: Biotechnology Institute, University of Caxias do Sul, Brazil
    index: 2
 date: 01 April 2024
 bibliography: paper.bib
@@ -213,6 +213,20 @@ addresses.head()
     -----------------------------------------
     
 ![Dataframe with collected addresses. \label{fig:addresses_df}](addresses_df.png)
+
++---------------------------------+----------+-------+-------+-------+
+|address                          |group     |sensor |time   |hash   |
++:===============================:+:========:+:=====:+:=====:+:=====:+
+|./data/source_data/res/C/1/0.csv |C         |1      |0      |C-1-0  |
++---------------------------------+----------+-------+-------+-------+
+|./data/source_data/res/C/1/5.csv |C         |1      |5      |C-1-5  |
++---------------------------------+----------+-------+-------+-------+
+|./data/source_data/res/C/1/10.csv|C         |1      |10     |C-1-10 |
++---------------------------------+----------+-------+-------+-------+
+|./data/source_data/res/C/1/15.csv|C         |1      |15     |C-1-15 |
++---------------------------------+----------+-------+-------+-------+
+|./data/source_data/res/C/1/20.csv|C         |1      |20     |C-1-20 |
++---------------------------------+----------+-------+-------+-------+
 
 
 
