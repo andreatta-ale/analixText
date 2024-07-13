@@ -43,7 +43,7 @@ affiliations:
 
   - name: Biotechnology Institute, University of Caxias do Sul, Brazil
     index: 2
-date: 01 April 2024
+date: 15 July 2024
 bibliography: paper.bib
 ---
 
