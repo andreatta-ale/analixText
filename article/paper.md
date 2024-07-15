@@ -490,6 +490,6 @@ else:
 
 # Acknowledgements
 
-The authors gratefully acknowledge support from the Brazilian agency Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq), Grant No.  305253/2018-2 (C.A.P.), and Grant No. ??? (C.A.). This study was also financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior – Brasil (CAPES) – Finance Code 001. Also, thanks are due to Dr. Mariana Roesch-Ely (Instituto de Biotecnologia at Universidade de Caxias do Sul).
+The authors gratefully acknowledge support from the Brazilian agency Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq), Grant No.  302705/2022-8 (C.A.P.), and Grant No. 304602/2022-1 (C.A.). This study was also financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior – Brasil (CAPES) – Finance Code 001. Also, thanks are due to Dr. Mariana Roesch-Ely (Instituto de Biotecnologia at Universidade de Caxias do Sul).
 
 # References
