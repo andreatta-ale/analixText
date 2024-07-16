@@ -8,8 +8,8 @@ tags:
   - Python
   - machine learning
 authors:
-  - given-names: Alessandro J. da S.
-    surname: Andreatta
+  - given-names: Alessandro Josue
+    surname: da Silva Andreatta
     orcid: 0009-0005-8309-5029
     corresponding: true
     affiliation: 1
@@ -25,13 +25,13 @@ authors:
     equal-contrib: true
     affiliation: 1
 
-  - given-names: Claudio A. 
+  - given-names: Claudio Antonio 
     surname: Perottoni
     orcid: 0000-0002-8425-845X
     equal-contrib: true
     affiliation: 1
 
-  - given-names: Janete E. 
+  - given-names: Janete Eunice 
     surname: Zorzi
     orcid: 0000-0001-8613-5739
     equal-contrib: true
