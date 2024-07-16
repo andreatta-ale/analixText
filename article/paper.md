@@ -49,19 +49,21 @@ bibliography: paper.bib
 
 # Summary
 
-Generating, plotting, and analyzing signal data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is software that reads frequency data generated when magnetoelastic sensors are subjected to an environment containing an external agent (such as SARS-CoV-2). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. Functionalized magnetoelastic sensors with an active surface were divided into test and control groups in controlled experiments. The test sensors were exposed to a medium containing SARS-CoV-2 viruses, and their vibration frequency was collected using a network analyzer, as well as the result of collecting vibrations from the control sensors. The Analix software compared the results, proposing a safe and fast way to diagnose the presence or absence of an external agent. A machine learning classifier was used to generate a portable model applicable to different scenarios. This work demonstrates the construction of the analysis routine until the final model.
+Generating, plotting, and analyzing signal data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is software that reads frequency data generated when magnetoelastic sensors are subjected to an environment containing an external agent (such as SARS-CoV-2). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. Functionalized magnetoelastic sensors with an active surface were divided into test and control groups in controlled experiments. The test sensors were exposed to a medium containing recombinant protein of SARS-CoV-2, and their vibration frequency was collected using a network analyzer, as well as the result of collecting vibrations from the control sensors. The Analix software compared the results, proposing a safe and fast way to diagnose the presence or absence of an external agent. A machine learning classifier was used to generate a portable model applicable to different scenarios. This work demonstrates the construction of the analysis routine until the final model.
 
 
 # Statement of need
 
 The primary objective of this project is to develop software for analyzing data from magnetoelastic sensors, focusing on the efficient detection of pathogens. The software aims to provide a robust tool for rapidly and accurately identifying pathogens, such as viruses and bacteria, that pose threats to public health, using advanced techniques such as statistical data analysis and machine learning algorithms.
 
-To achieve this overarching goal, the project sets specific targets that include:
-- evaluating data from functionalized magnetoelastic sensors to detect the presence of the SARS-CoV-2 virus; 
-- developing a predictive model based on the fitting of data curves from a network analyzer;
-- establishing a system capable of assessing with high precision the presence or absence of viruses, employing a machine learning classifier algorithm into a Jupyter notebook. 
-
 The relevance of this approach is evident when considering the backdrop of the pandemic scenario that developed between 2020 and 2022, which continues to manifest its effects today, in addition to the increase in dengue cases in Brazil. Such a context has demonstrated the need for tools that enable the rapid diagnosis of certain diseases, such as COVID-19 and other viral infections, to be obtained swiftly, with high detection efficiency and at a reduced cost.
+
+To achieve this overarching goal, the project sets specific targets that include:
+- evaluating data from functionalized magnetoelastic sensors to detect the presence of recombinant protein of SARS-CoV-2; 
+- developing a predictive model based on the fitting of data curves from a network analyzer;
+- establishing a system capable of assessing with high precision the presence or absence of recombinant proteins, employing a machine learning classifier algorithm into a Jupyter notebook. 
+
+
 
 # A brief literature review
 
@@ -93,7 +95,7 @@ A dataset comprising two groups, test and control, each containing data from thr
 ![Schematic view of data acquisition. \label{fig:data_acquisition}](Arch.png)
 
 
-A hash column was created as a reference field for analysis, combining group (test or control), sensor number, and signal acquisition time (T-4-30, for instance). A developed software processed frequency and signal data, capturing values around the estimated peak and fitting an asymmetric Lorentzian curve. The minimum point of this curve was the point of interest for analysis, as it measured the frequency shift used to identify sensor mass changes, indicating the presence of new materials like viruses. Monte Carlo simulation evaluated the statistical significance of the points of interest, with 1000 iterations for each sensor in both groups at each time interval. The resulting dataset contained minimized frequency values and their uncertainties, enabling the plotting of average frequency graphs over time. 
+A hash column was created as a reference field for analysis, combining the group (test or control), sensor number, and signal acquisition time (e.g., T-4-30). Custom software processed the frequency and signal data, capturing values around the estimated peak and fitting an asymmetric Lorentzian model to the data. The curve's minimum value was the point of interest for analysis, as it measured the frequency at a specific experiment time. The difference between this frequency and the one at t=0 was used to identify sensor mass changes caused by the addition of new materials, such as recombinant proteins. Monte Carlo simulations evaluated the statistical significance of the point of interest, with 1000 iterations for each sensor in both groups at each time interval. The resulting dataset contained minimized frequency values and their uncertainties, enabling the plotting of average frequency graphs over time. 
 
 ![Signal versus frequency and points of interest. \label{fig:points_of_interest}](T-4-30-Points_of_interest.png)
 
@@ -124,7 +126,7 @@ The Bootstrap method was employed to generate a larger dataset, showcasing signi
 
 
 
-This study, this study proposes further exploration by extrapolating analyses to other viruses beyond SARS-CoV-2, and extending applications to detecting harmful bacteria in medical and veterinary contexts. Additionally, experiments on sensors of different formats are suggested to assess the computational approach's sensitivity to SME geometry variations, offering avenues for future research and development in disease detection and classification. The source code can be adapted and tested in different sensing and measurement systems to achieve this.
+This study proposes further exploration by extrapolating analyses to other recombinant proteins beyond SARS-CoV-2, and extending applications to detecting harmful bacteria in medical and veterinary contexts. Additionally, experiments on sensors of different formats are suggested to assess the computational approach's sensitivity to SME geometry variations, offering avenues for future research and development in disease detection and classification. The source code can be adapted and tested in different sensing and measurement systems to achieve this.
 
 # Code review
 
