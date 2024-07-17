@@ -49,19 +49,19 @@ bibliography: paper.bib
 
 # Summary
 
-Generating, plotting, and analyzing signal data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is software that reads frequency data generated when magnetoelastic sensors are subjected to an environment containing an external agent (such as SARS-CoV-2). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. Functionalized magnetoelastic sensors with an active surface were divided into test and control groups in controlled experiments. The test sensors were exposed to a medium containing recombinant protein of SARS-CoV-2, and their vibration frequency was collected using a network analyzer, as well as the result of collecting vibrations from the control sensors. The Analix software compared the results, proposing a safe and fast way to diagnose the presence or absence of an external agent. A machine learning classifier was used to generate a portable model applicable to different scenarios. This work demonstrates the construction of the analysis routine until the final model.
+Generating, plotting, and analyzing signal data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is software that reads frequency data generated when magnetoelastic sensors are subjected to an environment containing an external agent (such as SARS-CoV-2). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. Functionalized magnetoelastic sensors with an active surface were divided into test and control groups in controlled experiments. The test sensors were exposed to a medium containing recombinant protein of SARS-CoV-2, and their vibration frequency was collected using a network analyzer, as well as the result of collecting vibrations from the control sensors. The Analix software compared the results, proposing a safe and fast way to diagnose the presence or absence of an external agent. A machine learning classifier generated a portable model applicable to different scenarios. This work demonstrates the construction of the analysis routine until the final model.
 
 
 # Statement of need
 
-The primary objective of this project is to develop software for analyzing data from magnetoelastic sensors, focusing on the efficient detection of pathogens. The software aims to provide a robust tool for rapidly and accurately identifying pathogens, such as viruses and bacteria, that pose threats to public health, using advanced techniques such as statistical data analysis and machine learning algorithms.
+The primary objective of this project is to develop software for analyzing data from magnetoelastic sensors, focusing on the efficient detection of pathogens. The software aims to provide a robust tool for rapidly and accurately identifying pathogens that threaten public health, such as viruses and bacteria, that pose threats to public health, using advanced techniques such as statistical data analysis and machine learning algorithms.
 
 The relevance of this approach is evident when considering the backdrop of the pandemic scenario that developed between 2020 and 2022, which continues to manifest its effects today, in addition to the increase in dengue cases in Brazil. Such a context has demonstrated the need for tools that enable the rapid diagnosis of certain diseases, such as COVID-19 and other viral infections, to be obtained swiftly, with high detection efficiency and at a reduced cost.
 
 To achieve this overarching goal, the project sets specific targets that include:
 - evaluating data from functionalized magnetoelastic sensors to detect the presence of recombinant protein of SARS-CoV-2; 
 - developing a predictive model based on the fitting of data curves from a network analyzer;
-- establishing a system capable of assessing with high precision the presence or absence of recombinant proteins, employing a machine learning classifier algorithm into a Jupyter notebook. 
+- establishing a system capable of assessing the presence or absence of recombinant proteins with high precision, employing a machine learning classifier algorithm in a Jupyter Notebook.
 
 
 
@@ -73,7 +73,7 @@ Sensors made with magnetoelastic materials and machine learning models can be an
 
 Biomedicine is an area that has benefited from sensors constructed from magnetoelastic materials, such as Magnetoelastic Biosensors (MBS). They are applied in monitoring biological parameters and can be used to detect the presence of bacteria and viruses, such as the SARS-CoV-2 coronavirus. Using machine learning for classification can increase the sensitivity and accuracy of diagnosis [@cdc11:2023; @who12:2023; @ms13:2023; @barreto14:2008].
 
-Magnetoelasticity, like magnetostriction, involves the change in magnetization of ferromagnetic materials due to the application of stress or strain. Magnetostriction, discovered by Joule in 1842, involves the deformation of ferromagnetic materials when exposed to external magnetic fields. Magnetoelasticity is influenced by the magnetostriction constant, the anisotropic constant, and the material’s magnetization, and its sensitivity to stress is maximized when the applied stress approaches $2K/3$. Magnetoelastic sensors (MES) utilize the magnetoelastic effect to measure physical quantities such as stress, pressure, temperature, strain, or electric current. They are manufactured from amorphous metal alloys, commercially known as Metglas 2826MB and Metglas 2605SC, and can detect mechanical vibrations induced by magnetic fields. These sensors have diverse applications, ranging from wireless monitoring of tires and machine shafts to detecting vibrations in civil constructions and monitoring biological parameters, such as plasma pH in the human body [@grimes16:2011; @jackson17:2019; @ausanio18:2005; @vander32:2000; @ludwig33:2002;@cai34:2000; @baran35:2011; @engdahl36:2000; @sablik37:1993; @szewczyk38:2008; @cullen39:2001; @desmione40:2002; @grimes41:2002; @hernando42:1988; @modzelewski43:1981; @jain44:2001; @croce45:2014; @mori46:2021; @khan47:2017; @kouz48:2000; @narita49:2021].
+Magnetoelasticity, like magnetostriction, involves the change in magnetization of ferromagnetic materials due to the application of stress or strain. Magnetostriction, discovered by Joule in 1842, consists of the deformation of ferromagnetic materials when exposed to external magnetic fields. Magnetoelasticity is influenced by the magnetostriction constant, the anisotropic constant, and the material magnetization, and its sensitivity to stress is maximized when the applied stress approaches $2K/3$. Magnetoelastic sensors (MES) utilize the magnetoelastic effect to measure physical quantities such as stress, pressure, temperature, strain, or electric current. They are manufactured from amorphous metal alloys, commercially known as Metglas 2826MB and Metglas 2605SC, and can detect mechanical vibrations induced by magnetic fields. These sensors have diverse applications, from wireless monitoring of tires and machine shafts to detecting vibrations in civil constructions and monitoring biological parameters, such as plasma pH in the human body [@grimes16:2011; @jackson17:2019; @ausanio18:2005; @vander32:2000; @ludwig33:2002;@cai34:2000; @baran35:2011; @engdahl36:2000; @sablik37:1993; @szewczyk38:2008; @cullen39:2001; @desmione40:2002; @grimes41:2002; @hernando42:1988; @modzelewski43:1981; @jain44:2001; @croce45:2014; @mori46:2021; @khan47:2017; @kouz48:2000; @narita49:2021].
 
 Magnetoelastic sensors exhibit a fundamental frequency, which takes into account the length $(L)$ of the sensor, its modulus of elasticity $(E)$, Poisson’s ratio $(\nu)$, and the density $(\rho)$ of the alloy from which it is made, defined by the following equation [@sisniega50:2020]:
 
@@ -89,7 +89,7 @@ The sensors, obtained from Metglas 2826MB3 by Metglas Company, were fabricated i
 ![Representative model of the detection system using magnetoelastic sensors and network analyzer. \label{fig:sensor_reading}](schema.png)
 
 
-A dataset comprising two groups, test and control, each containing data from three sensors, totaling 6 sensors, was assembled. Each sensor underwent a 30-minute measurement cycle using a network analyzer, with data collected every 5 minutes, including t = 0, resulting in 7 subsets of data per sensor, with 201 signal and frequency readings per group. The frequency range tested was between 430,000 Hz and 460,000 Hz, encompassing the characteristic resonance frequency of the sensor material. The final dataset consisted of frequency and signal data from all sensor cycles for each group, totaling 8442 rows. 
+A dataset comprising two groups, test and control, each containing data from three sensors, totaling six, was assembled. Each sensor underwent a 30-minute measurement cycle using a network analyzer, with data collected every 5 minutes, including t = 0, resulting in 7 subsets of data per sensor, with 201 signal and frequency readings per group. The frequency range tested was between 430,000 Hz and 460,000 Hz, encompassing the characteristic resonance frequency of the sensor material. The final dataset consisted of frequency and signal data from all sensor cycles for each group, totaling 8442 rows. 
 
 
 ![Schematic view of data acquisition. \label{fig:data_acquisition}](Arch.png)
@@ -109,7 +109,7 @@ Lagergren’s equation was employed to fit the frequency data over time, facilit
 
 The application is divided into two parts. The first consists of a data analysis routine that captures data from folders and applies fitting techniques to obtain the difference between fundamental frequency (t=0 minutes) and final frequency (t=30 minutes). The second part is the classifier routine, which imports the result dataset from the analysis script and trains the XGBost algorithm. If one already has delta frequency data, it is possible to use the exported model available at the repository to obtain a diagnosis. Templates and examples can be found in the [project repository](https://github.com/andreatta-ale/external-agents-detector).
 
-In order to use the software, network analizer results must be inside a folder, split into two subfolders named *C* and *T* (control and test). Once the notebook is started, after packages are imported, a window pops up, where it is possible to select the main folder where *C* and *T* subfolders are stored. The notebook can be run cell by cell or in run-all mode. A csv file that can be imported to the classifier routine will be exported to the result folder. A file named *I_am_here_to_test_the_model.ipynb* is also available to test results either from full experiments or random results from other sources. 
+To use the software, network analizer results must be inside a folder, split into *C* and *T* subfolders (control and test). Once the notebook is started, after packages are imported, a window pops up, where it is possible to select the main folder where *C* and *T* subfolders are stored. The notebook can be run cell by cell or in run-all mode. A CSV file that can be imported to the classifier routine will be exported to the result folder. A file named *I_am_here_to_test_the_model.ipynb* is also available to test results either from full experiments or random results from other sources. 
 
 
 # Discussion
@@ -130,7 +130,7 @@ This study proposes further exploration by extrapolating analyses to other recom
 
 # Code review
 
-#### Selecting data folder. It creates result folder for output saving.
+#### Selecting data folder. It creates a result folder for output saving.
 
 
 ```python
@@ -173,7 +173,7 @@ with open(log_file, 'w') as f:
     -----------------------------------------
     
     
-#### Acquiring individual files addresses. 
+#### Acquiring individual file addresses. 
 Splits into group, sensor and time, adding a hash column used for filtering data.
 
 
@@ -230,9 +230,8 @@ addresses.head()
 
 
 
-#### Scans the addresses data frame
-Reads data of each file and assembles them into a combined data frame, that contains frequency and signal data. 
-Also, rescales frequency values to signal's order of magnitude (multiplied by $1 \times 10^{-6}$)
+#### Scans the address data frame
+The function reads data from each file and combines it into a single data frame that includes both frequency and signal data. It then rescales the frequency values to match the signal's magnitude (by multiplying by $1 \times 10^{-6}$)
 
 
 ```python
@@ -275,22 +274,21 @@ combined_df.head()
     +----------------+-----------------+----------+-------+-------+-------+
     
 
-Split Lorentzian function, used to fit data to model:
+Split Lorentzian function, used to fit the model to data:
 
 $f(x; A, \mu, \sigma, \sigma_r) = \frac{2 A}{\pi (\sigma+\sigma_r)} \big[\frac{\sigma^2}{(x - \mu)^2 + \sigma^2} * H(\mu-x) + \frac{\sigma_r^2}{(x - \mu)^2 + \sigma_r^2} * H(x-\mu)\big] + (m x + b)$
 
-This function fits a Lorentzian model to each experimental dataset and retrieves an evaluation dataset based on the model. After fitting, an optimization function is applied using Monte Carlo Simulation to find the point of interest: the minimized frequency used to evaluate the delocation over time during the experiment.
+The function fits a Lorentzian model to each experimental dataset and generates an evaluation dataset based on this model. After fitting, it uses Monte Carlo simulation to optimize and identify the key point of interest: the minimized frequency, which assesses the delocation over time during the experiment.
 
-For each time instance, a graph is plotted showing the initial data, the accuracy rate between the Monte Carlo Simulation average frequency and the minimized average frequency, and the fitted curve over the original data. The graph highlights these values alongside the minimal point from the original data.
+For each time instance, a graph shows the original data, the accuracy rate between the average frequency from the Monte Carlo simulation and the minimized average frequency, and the fitted curve overlaid on the original data. The graph also highlights these values and marks the minimal point from the original data.
 
-#### Running the fit model builder:
+
+#### Running the fit model builder and the first outputs:
 
 
 ```python
 eval_df, param_df = process_data(combined_df, log_file)
 ```
-
-Fist outputs:
 
     [[Model]]
         (Model(linear) + Model(split_lorentzian))
@@ -355,7 +353,7 @@ Fist outputs:
     (...)
 
 
-In order to obtain a model for frequency decay over time, a Lagergren model is applied over minimized data. A detailed report on fit params of the model is displayed. 
+To obtain a model for frequency decay over time, a Lagergren model is applied to minimized data. A detailed report on the model's fit parameters is displayed. 
 
 
 ![png](output_22_0.png)
@@ -395,8 +393,7 @@ In order to obtain a model for frequency decay over time, a Lagergren model is a
 
 #### Classification model
 
-As result of this process, a CSV file containing information of delta frequency at every time is exported. Once the CSV file is imported into the *Classifier.ipynb* file, the Bootstrap method will be applied to data, wich were splitted into test and control subsets. It helps to keep the main dataset balanced at the end of bootstrapping process. 
-The model is trained
+As a result, a CSV file containing delta frequency information is exported every time. Once the CSV file is imported into the *Classifier.ipynb* file, the Bootstrap method will be applied to data split into test and control subsets. It helps to keep the main dataset balanced at the end of the bootstrapping process. The model is trained.
 
 ```python
 # Train-test split
@@ -459,7 +456,7 @@ for scorer in scoring:
 joblib.dump(grid_search, './data/source_data/res/xgboost_model.joblib')
 ```
 
-After training the classifier algorithm, it is possible to test it just by importing the model to another jupyter notebook (*I_am_here_to_test_the_model.ipynb* file is available for that end).
+After training the classifier algorithm, it can be tested by importing the model to another Jupyter Notebook (*I_am_here_to_test_the_model.ipynb* file is available for that end).
 
 
 ```python
@@ -492,6 +489,6 @@ else:
 
 # Acknowledgements
 
-The authors gratefully acknowledge support from the Brazilian agency Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq), Grant No.  302705/2022-8 (C.A.P.), and Grant No. 304602/2022-1 (C.A.). This study was also financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior – Brasil (CAPES) – Finance Code 001. Also, thanks are due to Dr. Mariana Roesch-Ely (Instituto de Biotecnologia at Universidade de Caxias do Sul).
+The authors gratefully acknowledge support from the Brazilian agency Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq), Grant No. 302705/2022-8 (C.A.P.), and Grant No. 304602/2022-1 (C.A.). This study was also financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior – Brasil (CAPES) – Finance Code 001. Also, thanks are due to Dr. Mariana Roesch-Ely (Instituto de Biotecnologia at Universidade de Caxias do Sul).
 
 # References
