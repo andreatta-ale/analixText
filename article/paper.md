@@ -278,7 +278,7 @@ Split Lorentzian function, used to fit the model to data:
 
 $f(x; A, \mu, \sigma, \sigma_r) = \frac{2 A}{\pi (\sigma+\sigma_r)} \big[\frac{\sigma^2}{(x - \mu)^2 + \sigma^2} * H(\mu-x) + \frac{\sigma_r^2}{(x - \mu)^2 + \sigma_r^2} * H(x-\mu)\big] + (m x + b)$
 
-The function fits a Lorentzian model to each experimental dataset and generates an evaluation dataset based on this model. After fitting, it uses Monte Carlo simulation to optimize and identify the key point of interest: the minimized frequency, which assesses the delocation over time during the experiment.
+The function fits a Lorentzian model to each experimental dataset and generates an evaluation dataset based on this model. After fitting, it uses Monte Carlo simulation to optimize and identify the key point of interest: the minimized frequency, which assesses the displacement over time during the experiment.
 
 For each time instance, a graph shows the original data, the accuracy rate between the average frequency from the Monte Carlo simulation and the minimized average frequency, and the fitted curve overlaid on the original data. The graph also highlights these values and marks the minimal point from the original data.
 
