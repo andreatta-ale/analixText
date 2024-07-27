@@ -8,17 +8,17 @@ tags:
   - Python
   - machine learning
 authors:
-  - given-names: Alessandro Josue
-    surname: da Silva Andreatta
+  - given-names: Alessandro Josue da Silva
+    surname: Andreatta
     orcid: 0009-0005-8309-5029
     corresponding: true
     affiliation: 1
 
-  - given-names: Luiza 
-    surname: Felippi de Lima
+  - given-names: Luiza Felippi de  
+    surname: Lima
     orcid: 0000-0002-1401-3430
     equal-contrib: true
-    affiliation: 2
+    affiliation: 1
     
   - given-names: Cesar 
     surname: Aguzzoli
@@ -38,30 +38,25 @@ authors:
     affiliation: 1
 
 affiliations:
-  - name: Graduate Program of Materials Science and Engineering, University of Caxias do Sul, Brazil
+  - name: Universidade de Caxias do Sul, 95070-560, Caxias do SUl, RS, Brazil
     index: 1
 
-  - name: Biotechnology Institute, University of Caxias do Sul, Brazil
-    index: 2
-date: 15 July 2024
+date: 29 July 2024
 bibliography: paper.bib
 ---
 
 # Summary
 
-Generating, plotting, and analyzing signal data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is software that reads frequency data generated when magnetoelastic sensors are subjected to an environment containing an external agent (such as SARS-CoV-2). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. Functionalized magnetoelastic sensors with an active surface were divided into test and control groups in controlled experiments. The test sensors were exposed to a medium containing recombinant protein of SARS-CoV-2, and their vibration frequency was collected using a network analyzer, as well as the result of collecting vibrations from the control sensors. The Analix software compared the results, proposing a safe and fast way to diagnose the presence or absence of an external agent. A machine learning classifier generated a portable model applicable to different scenarios. This work demonstrates the construction of the analysis routine until the final model.
+Generating, plotting, and analyzing sensor's data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is software that performs the analysis of data from magnetoelastic sensors subjected to an environment containing an external agent (such as SARS-CoV-2 virus). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. In developing magnetoelastic sensors with an active surface, these are divided into test and control groups. The test sensors are exposed to a medium containing recombinant protein of SARS-CoV-2, and their response in frequency spaceis registered. Control sensors are tested the same way, but exposed to a medium without the recombinant protein, so no major resonant frequency change is expected. The Analix software precisely determined the sensors' resonant frequency, this allow a safe and fast way to diagnose the presence of an external agent. A machine learning classifier generated a portable model applicable to different scenarios. This work demonstrates the construction of the analysis routine until the final model.
 
 
 # Statement of need
 
-The primary objective of this project is to develop software for analyzing data from magnetoelastic sensors, focusing on the efficient detection of pathogens. The software aims to provide a robust tool for rapidly and accurately identifying pathogens that threaten public health, such as viruses and bacteria, that pose threats to public health, using advanced techniques such as statistical data analysis and machine learning algorithms.
+The primary objective of this work is to develop software for analyzing data from magnetoelastic sensors, focusing on the efficient detection of pathogens. The software aims to provide a robust tool for rapidly and accurately identifying pathogens that threaten public health, such as viruses and bacteria, using advanced techniques such as statistical data analysis and machine learning algorithms.
 
-The relevance of this approach is evident when considering the backdrop of the pandemic scenario that developed between 2020 and 2022, which continues to manifest its effects today, in addition to the increase in dengue cases in Brazil. Such a context has demonstrated the need for tools that enable the rapid diagnosis of certain diseases, such as COVID-19 and other viral infections, to be obtained swiftly, with high detection efficiency and at a reduced cost.
+The relevance of this approach is evident when considering the backdrop of the pandemic scenario that developed between 2020 and 2022, which continues to manifest its effects even today. Such a context has demonstrated the need for tools that enable the rapid diagnosis of certain diseases, such as COVID-19 and other viral infections, to be obtained swiftly, with high detection efficiency and at a reduced cost.
 
-To achieve this overarching goal, the project sets specific targets that include:
-- evaluating data from functionalized magnetoelastic sensors to detect the presence of recombinant protein of SARS-CoV-2; 
-- developing a predictive model based on the fitting of data curves from a network analyzer;
-- establishing a system capable of assessing the presence or absence of recombinant proteins with high precision, employing a machine learning classifier algorithm in a Jupyter Notebook.
+To achieve this overarching goal, the project aims to evaluate data from functionalized magnetoelastic sensors to detect the presence of recombinant protein of SARS-CoV-2 and to develop a predictive model, using Extreme Gradient Boosting algorithm on resonant frequency data from these sensors, capable of assessing the presence of recombinant proteins with high precision.
 
 
 
@@ -69,41 +64,54 @@ To achieve this overarching goal, the project sets specific targets that include
 
 Over the past decade, several deadly viral epidemics have had a significant impact on global public health, including outbreaks of Ebola, Marburg, Nipah, Zika, Crimean-Congo hemorrhagic fever, COVID-19, and dengue. These epidemics underscore the need for rapid and accurate detection methods and the development of effective drugs and vaccines [@frieden1:2014; @cdc2:2023; @rougeron3:2015; @cdc4:2023; @yadav5:2019; @who6:2018; @leal7:2017; @paho15:2024].
 
-Sensors made with magnetoelastic materials and machine learning models can be an ally in the race for rapid detection mechanisms. These sensitive, precise, and reliable sensors can operate over various temperatures and frequencies. They are also less susceptible to electromagnetic interference and can be integrated into devices with embedded electronics [@cdc8:2023; @bente9:2013; @who10:2022].
+Sensors made with magnetoelastic materials and machine learning models can be an ally in the race for rapid detection solutions. These sensitive, precise, and reliable sensors can operate over various temperatures and frequencies. They are also less susceptible to electromagnetic interference and can be integrated into devices with embedded electronics [@cdc8:2023; @bente9:2013; @who10:2022]. Magnetoelasticity, like magnetostriction, involves the change in magnetization of ferromagnetic materials due to the application of stress or strain. Magnetostriction, discovered by Joule in 1842, consists of the deformation of ferromagnetic materials when exposed to external magnetic fields [@vander32:2000;]. 
 
-Biomedicine is an area that has benefited from sensors constructed from magnetoelastic materials, such as Magnetoelastic Biosensors (MBS). They are applied in monitoring biological parameters and can be used to detect the presence of bacteria and viruses, such as the SARS-CoV-2 coronavirus. Using machine learning for classification can increase the sensitivity and accuracy of diagnosis [@cdc11:2023; @who12:2023; @ms13:2023; @barreto14:2008].
+Magnetoelasticity is influenced by the magnetostriction constant $\lambda$, the anisotropic constant $K$, and the material magnetization $M$. On the magnetic permeability variation $\frac{d\mu}{d\sigma}$, magnetoelasticity sensitivity to stress is maximized when the applied stress $\lambda \sigma$ approaches $2K/3$, as in the equation [@ludwig33:2002]
 
-Magnetoelasticity, like magnetostriction, involves the change in magnetization of ferromagnetic materials due to the application of stress or strain. Magnetostriction, discovered by Joule in 1842, consists of the deformation of ferromagnetic materials when exposed to external magnetic fields. Magnetoelasticity is influenced by the magnetostriction constant, the anisotropic constant, and the material magnetization, and its sensitivity to stress is maximized when the applied stress approaches $2K/3$. Magnetoelastic sensors (MES) utilize the magnetoelastic effect to measure physical quantities such as stress, pressure, temperature, strain, or electric current. They are manufactured from amorphous metal alloys, commercially known as Metglas 2826MB and Metglas 2605SC, and can detect mechanical vibrations induced by magnetic fields. These sensors have diverse applications, from wireless monitoring of tires and machine shafts to detecting vibrations in civil constructions and monitoring biological parameters, such as plasma pH in the human body [@grimes16:2011; @jackson17:2019; @ausanio18:2005; @vander32:2000; @ludwig33:2002;@cai34:2000; @baran35:2011; @engdahl36:2000; @sablik37:1993; @szewczyk38:2008; @cullen39:2001; @desmione40:2002; @grimes41:2002; @hernando42:1988; @modzelewski43:1981; @jain44:2001; @croce45:2014; @mori46:2021; @khan47:2017; @kouz48:2000; @narita49:2021].
+$$ 
+\frac{d\mu}{d\sigma} = \frac{3 \lambda \mu_0 M^2}{(2K - 3\lambda \sigma)^2}, \text{ to } 2K > 3\lambda \sigma.
+$$
 
-Magnetoelastic sensors exhibit a fundamental frequency, which takes into account the length $(L)$ of the sensor, its modulus of elasticity $(E)$, Poisson’s ratio $(\nu)$, and the density $(\rho)$ of the alloy from which it is made, defined by the following equation [@sisniega50:2020]:
+Magnetoelastic sensors (MES) utilize the magnetoelastic effect to measure physical quantities such as stress, pressure, temperature, strain, or electric current. They are usually manufactured from amorphous metal alloys, commercially known as Metglas 2826MB and Metglas 2605SC, and can detect mechanical vibrations induced by magnetic fields. These sensors have diverse applications, from wireless monitoring of tires and machine shafts to detecting vibrations in civil constructions and monitoring biological parameters, such as plasma pH in the human body [@grimes16:2011; @jackson17:2019; @ausanio18:2005; @cai34:2000; @baran35:2011; @engdahl36:2000; @sablik37:1993; @szewczyk38:2008; @cullen39:2001; @desmione40:2002; @grimes41:2002; @hernando42:1988; @modzelewski43:1981; @jain44:2001; @croce45:2014; @mori46:2021; @khan47:2017; @kouz48:2000; @narita49:2021].
 
-$$f_0 = \frac{1}{2L} \sqrt{\frac{E}{\rho(1 - \nu)}}$$
+Flat and rectangular magnetoelastic sensors exhibit a fundamental frequency $f_0$, which depends on the length $(L)$ of the sensor, its modulus of elasticity $(E)$, Poisson’s ratio $(\nu)$, and the density $(\rho)$ of the alloy from which it is made, and it is given by [@sisniega50:2020]:
 
-Artificial intelligence and machine learning are fundamental in enhancing MES detection and diagnosis. Artificial intelligence enables the development of systems capable of performing tasks that require human intelligence, such as pattern recognition and decision-making. Machine learning, a subfield of artificial intelligence, focuses on developing algorithms that learn from data. Techniques like bootstrap and statistical resampling methods are used to estimate statistics from a data sample, contributing to the analysis and interpretation of sensor signals [@mellit51:2008; @moor52:2006; @mccarthy53:1956; @domingos54:2012; @nilsson56:2013; @bishop57:2006; @macario58:2009; @sas59; @amaral60:2016; @shalev61:2014; @brownlee62:2016; @monard63:2003; @efron69:2000; @davison70:1997].
+$$f_0 = \frac{1}{2L} \sqrt{\frac{E}{\rho(1 - \nu)}}.$$
+
+Accordingly, magnetoelastic biosensors (MBS)can be applied in monitoring biological parameters and can be used to detect the presence of bacteria and viruses, such as the SARS-CoV-2 coronavirus. Using machine learning for classification can increase the sensitivity and accuracy of diagnosis [@cdc11:2023; @who12:2023; @ms13:2023; @barreto14:2008].
+
+Artificial intelligence and machine learning are fundamental in enhancing MBS based diagnosis. Artificial intelligence enables the development of systems capable of performing tasks that require human intelligence, such as pattern recognition and decision-making. Machine learning, a subfield of artificial intelligence, focuses on developing algorithms that learn from data. Techniques like bootstrap and statistical resampling methods are used to estimate statistics from a data sample, contributing to the analysis and interpretation of sensor signals [@mellit51:2008; @moor52:2006; @mccarthy53:1956; @domingos54:2012; @nilsson56:2013; @bishop57:2006; @macario58:2009; @sas59; @mahesh60:2020; @shalev61:2014; @brownlee62:2016; @monard63:2003; @efron69:2000; @davison70:1997].
 
 # Methodology
 
-The sensors, obtained from Metglas 2826MB3 by Metglas Company, were fabricated into dimensions of 5 mm x 1 mm x 28 μm for optimal vibration modes. They were coated with chrome and gold using magnetron sputtering. Measurements were conducted using electromagnetic coils connected to a Keysight E5061B network analyzer and a DC power source, that reads the vibrational behavior of the sensors as a response to the signal from the analyzer coils.
+The sensors, obtained from Metglas 2826MB3 by Metglas Company, were fabricated into dimensions of 5 mm x 1 mm x 28 μm for optimal vibration modes. They were coated with chrome and gold using magnetron sputtering [@luiza:2024]. Measurements were conducted using driving and pick-up coils connected to a Keysight E5061B network analyzer, that reads the sensors' response to a variable frequency. Figure 1 shows a schematic model of how the reading system is assembled and the measurement of frequency shift after external agents adsorption. 
 
 
-![Representative model of the detection system using magnetoelastic sensors and network analyzer. \label{fig:sensor_reading}](schema.png)
+![Schematic model of the detection system using magnetoelastic biosensors, showing resonant frequency change $\Delta f$ upon an external agend adsorption on MBS surface. \label{fig:sensor_reading}](schema.png)
 
 
-A dataset comprising two groups, test and control, each containing data from three sensors, totaling six, was assembled. Each sensor underwent a 30-minute measurement cycle using a network analyzer, with data collected every 5 minutes, including t = 0, resulting in 7 subsets of data per sensor, with 201 signal and frequency readings per group. The frequency range tested was between 430,000 Hz and 460,000 Hz, encompassing the characteristic resonance frequency of the sensor material. The final dataset consisted of frequency and signal data from all sensor cycles for each group, totaling 8442 rows. 
+A dataset comprising two groups, test and control, each containing data from three sensors, is used to illustrate the application of Analix. The test sensors were exposed to a medium containing recombinant proteins of the SARS-CoV-2 virus, whereas the control sensors were placed in an inert medium. Each sensor underwent a 30-minute measurement cycle using a network analyzer, with data collected every 5 minutes, including t = 0, resulting in 7 subsets of data per sensor, with 201 readings per group. The frequency range tested was between 430,000 Hz and 460,000 Hz, encompassing the characteristic resonance frequency of the sensors. The final dataset consisted of frequency and signal data from all sensor cycles for each group, totaling 8442 rows, as shown in Figure 2. 
 
 
-![Schematic view of data acquisition. \label{fig:data_acquisition}](Arch.png)
+![Schematic representation of data acquisition. \label{fig:data_acquisition}](Arch.png)
 
 
-A hash column was created as a reference field for analysis, combining the group (test or control), sensor number, and signal acquisition time (e.g., T-4-30). Custom software processed the frequency and signal data, capturing values around the estimated peak and fitting an asymmetric Lorentzian model to the data. The curve's minimum value was the point of interest for analysis, as it measured the frequency at a specific experiment time. The difference between this frequency and the one at t=0 was used to identify sensor mass changes caused by the addition of new materials, such as recombinant proteins. Monte Carlo simulations evaluated the statistical significance of the point of interest, with 1000 iterations for each sensor in both groups at each time interval. The resulting dataset contained minimized frequency values and their uncertainties, enabling the plotting of average frequency graphs over time. 
+A hash column was created as a reference field for analysis, combining the group (test or control), sensor number, and signal acquisition time (e.g., T-4-30). Custom software processed the signal versus frequency data, selecting values around the estimated peak and fitting an asymmetric Lorentzian model to the data, as shown in Figure 3. The curve's minimum value was the point of interest for analysis, as it measured the resonant frequency at a specific experiment time. The difference between this frequency and the one at t=0 was used to identify sensor mass changes caused by mass adsorption. Monte Carlo simulations was used to evaluate uncertainties of the point of interest, with 1000 iterations for each sensor in both groups at each time interval. The resulting dataset contained MBS resonant frequency values and their uncertainties, wich can then be represented as a function of time, as in Figure 4 \label{lagergren_T4}. 
 
-![Signal versus frequency and points of interest. \label{fig:points_of_interest}](T-4-30-Points_of_interest.png)
+![MBS singal versus frquency data from network analyzer. The continuous line represents the asymmetric Lorentzian model fitted to data. Resonant frequency is representede by the black dot. \label{fig:points_of_interest}](T-4-30-Points_of_interest.png)
 
-Lagergren’s equation was employed to fit the frequency data over time, facilitating a precise comparison of frequency shifts between test and control sensors. The bootstrap method was applied to obtain randomly selected data points for the classifier, generating an 8000-point dataset (4000 for each group). This dataset used 80% of the data as the training subset and the remaining 20% as the testing subset. An Extreme Gradient Boosting (XGBoost) algorithm was trained and tuned, considering various parameters such as maximum depth, learning rate, and number of estimators, with five-fold cross-validation [@chen67:2016; xgboost68:2024].
+Lagergren’s model for pseudo-first order adsorption was employed to fit the frequency data over time, facilitating a precise comparison of frequency shifts between test and control sensors [@revellame71:2020]. With model appplied to data, it is possible to obtain the resonant frequency at a certain time using parameters $f_0$, $a$ and $c$, from Lagergren's equation, given by  
 
-![Minimized frequency over time and frequency shift for sensor 4. \label{fig:lagergren_T4}](Lagergren_T4.png)
+$$
+f(t) = f(0) \left(1 - ae^{-ct} \right).
+$$
 
 
+
+
+![MBS resonant frequency for test sensor. The continuous line represents the Lagergren's model fitted to data. Parameters of the model are highlighted. \label{fig:lagergren_T4}](Lagergren_T4.png)
+
+The bootstrap method was applied to obtain randomly selected data points for the classifier, generating an 8000-point dataset (4000 for each group). This dataset used 80% of the data as the training subset and the remaining 20% as the testing subset. An Extreme Gradient Boosting (XGBoost) algorithm was trained and tuned, considering various parameters such as maximum depth, learning rate, and number of estimators, with five-fold cross-validation [@chen67:2016; @xgboost68:2024].
 
 # Usage
 
@@ -339,11 +347,11 @@ eval_df, param_df = process_data(combined_df, log_file)
     ---------------------------------------------  ----------------------
 
    
-![png](output_17_2.png)
+![Initial data curve from sensor C-1-0.](output_17_2.png)
 
-![png](output_17_4.png)
+![Accuracy between LMFIT frequency mean and SMC optimized frequency mean for sensor C-1-0.](output_17_4.png)
     
-![png](output_17_5.png)
+![Signal by frequency: Lorentz fucntion fit and points of interest of sensor C-1-0.](output_17_5.png)
     
 
 
@@ -356,9 +364,9 @@ eval_df, param_df = process_data(combined_df, log_file)
 To obtain a model for frequency decay over time, a Lagergren model is applied to minimized data. A detailed report on the model's fit parameters is displayed. 
 
 
-![png](output_22_0.png)
+![Minimized frequency mean by time to sensor C-1-0.](output_22_0.png)
        
-![png](output_22_1.png)
+![Lagergren model by time to sensor C-1-0.](output_22_1.png)
     
 
 
@@ -489,6 +497,6 @@ else:
 
 # Acknowledgements
 
-The authors gratefully acknowledge support from the Brazilian agency Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq), Grant No. 302705/2022-8 (C.A.P.), and Grant No. 304602/2022-1 (C.A.). This study was also financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior – Brasil (CAPES) – Finance Code 001. Also, thanks are due to Dr. Mariana Roesch-Ely (Instituto de Biotecnologia at Universidade de Caxias do Sul).
+The authors gratefully acknowledge support from the Brazilian agency Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq), Grant No. 302705/2022-8 (C.A.P.), and Grant No. 304602/2022-1 (C.A.). This study was also financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior – Brasil (CAPES) – Finance Code 001. Thanks also due to Dr. Mariana Roesch-Ely (Instituto de Biotecnologia at Universidade de Caxias do Sul).
 
 # References
