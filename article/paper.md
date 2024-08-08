@@ -25,7 +25,7 @@ authors:
     equal-contrib: true
     affiliation: 1
 
-  - given-names: Claudio Antonio 
+  - given-names: Cláudio Antônio 
     surname: Perottoni
     orcid: 0000-0002-8425-845X
     equal-contrib: true
@@ -47,8 +47,7 @@ bibliography: paper.bib
 
 # Summary
 
-Generating, plotting, and analyzing sensor's data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is software that performs the analysis of data from magnetoelastic sensors subjected to an environment containing an external agent (such as SARS-CoV-2 virus). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. In developing magnetoelastic sensors with an active surface, these are divided into test and control groups. The test sensors are exposed to a medium containing recombinant protein of SARS-CoV-2, and their response in frequency spaceis registered. Control sensors are tested the same way, but exposed to a medium without the recombinant protein, so no major resonant frequency change is expected. The Analix software precisely determined the sensors' resonant frequency, this allow a safe and fast way to diagnose the presence of an external agent. A machine learning classifier generated a portable model applicable to different scenarios. This work demonstrates the construction of the analysis routine until the final model.
-
+Generating, plotting, and analyzing sensor's data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is software that performs the analysis of data from magnetoelastic sensors subjected to an environment containing an external agent (such as SARS-CoV-2 virus). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. In developing magnetoelastic sensors with an active surface, these are divided into test and control groups. The test sensors are exposed to a medium containing recombinant protein of SARS-CoV-2, and their response in frequency spaceis registered. Control sensors are tested the same way, but exposed to a medium without the recombinant protein, so no major resonant frequency change is expected. The Analix software precisely determined the sensors' resonant frequency, this allow a safe and fast way to diagnose the presence of an external agent. A machine learning classifier generated a portable model applicable to different scenarios. 
 
 # Statement of need
 
@@ -74,17 +73,19 @@ $$
 
 Magnetoelastic sensors (MES) utilize the magnetoelastic effect to measure physical quantities such as stress, pressure, temperature, strain, or electric current. They are usually manufactured from amorphous metal alloys, commercially known as Metglas 2826MB and Metglas 2605SC, and can detect mechanical vibrations induced by magnetic fields. These sensors have diverse applications, from wireless monitoring of tires and machine shafts to detecting vibrations in civil constructions and monitoring biological parameters, such as plasma pH in the human body [@grimes16:2011; @jackson17:2019; @ausanio18:2005; @cai34:2000; @baran35:2011; @engdahl36:2000; @sablik37:1993; @szewczyk38:2008; @cullen39:2001; @desmione40:2002; @grimes41:2002; @hernando42:1988; @modzelewski43:1981; @jain44:2001; @croce45:2014; @mori46:2021; @khan47:2017; @kouz48:2000; @narita49:2021].
 
-Flat and rectangular magnetoelastic sensors exhibit a fundamental frequency $f_0$, which depends on the length $(L)$ of the sensor, its modulus of elasticity $(E)$, Poisson’s ratio $(\nu)$, and the density $(\rho)$ of the alloy from which it is made, and it is given by [@sisniega50:2020]:
+Flat and rectangular magnetoelastic sensors exhibit a fundamental frequency $f_0$, which depends on the length $(L)$ of the sensor, its modulus of elasticity $(E)$, Poisson’s ratio $(\nu)$, and the density $(\rho)$ of the alloy from which it is made, and it is given by [@sisniega50:2020]
 
 $$f_0 = \frac{1}{2L} \sqrt{\frac{E}{\rho(1 - \nu)}}.$$
 
-Accordingly, magnetoelastic biosensors (MBS)can be applied in monitoring biological parameters and can be used to detect the presence of bacteria and viruses, such as the SARS-CoV-2 coronavirus. Using machine learning for classification can increase the sensitivity and accuracy of diagnosis [@cdc11:2023; @who12:2023; @ms13:2023; @barreto14:2008].
+Accordingly, magnetoelastic biosensors (MBS) can be applied in monitoring biological parameters and can be used to detect the presence of bacteria and viruses, such as the SARS-CoV-2 coronavirus. Using machine learning for classification can increase the sensitivity and accuracy of diagnosis [@cdc11:2023; @who12:2023; @ms13:2023; @barreto14:2008].
 
 Artificial intelligence and machine learning are fundamental in enhancing MBS based diagnosis. Artificial intelligence enables the development of systems capable of performing tasks that require human intelligence, such as pattern recognition and decision-making. Machine learning, a subfield of artificial intelligence, focuses on developing algorithms that learn from data. Techniques like bootstrap and statistical resampling methods are used to estimate statistics from a data sample, contributing to the analysis and interpretation of sensor signals [@mellit51:2008; @moor52:2006; @mccarthy53:1956; @domingos54:2012; @nilsson56:2013; @bishop57:2006; @macario58:2009; @sas59; @mahesh60:2020; @shalev61:2014; @brownlee62:2016; @monard63:2003; @efron69:2000; @davison70:1997].
 
 # Methodology
 
-The sensors, obtained from Metglas 2826MB3 by Metglas Company, were fabricated into dimensions of 5 mm x 1 mm x 28 μm for optimal vibration modes. They were coated with chrome and gold using magnetron sputtering [@luiza:2024]. Measurements were conducted using driving and pick-up coils connected to a Keysight E5061B network analyzer, that reads the sensors' response to a variable frequency. Figure 1 shows a schematic model of how the reading system is assembled and the measurement of frequency shift after external agents adsorption. 
+The sensors, obtained from Metglas 2826MB3 by Metglas Company, were fabricated into dimensions of 5 mm x 1 mm x 28 μm and coated with chrome and gold using magnetron sputtering [@luiza:2024]. Measurements were conducted using driving and pick-up coils connected to a Keysight E5061B network analyzer, that reads the sensors' response to a variable frequency. 
+
+Figure 1 shows a schematic model of how the reading system is assembled and the measurement of frequency shift after external agents adsorption. 
 
 
 ![Schematic model of the detection system using magnetoelastic biosensors, showing resonant frequency change $\Delta f$ upon an external agend adsorption on MBS surface. \label{fig:sensor_reading}](schema.png)
@@ -96,7 +97,7 @@ A dataset comprising two groups, test and control, each containing data from thr
 ![Schematic representation of data acquisition. \label{fig:data_acquisition}](Arch.png)
 
 
-A hash column was created as a reference field for analysis, combining the group (test or control), sensor number, and signal acquisition time (e.g., T-4-30). Custom software processed the signal versus frequency data, selecting values around the estimated peak and fitting an asymmetric Lorentzian model to the data, as shown in Figure 3. The curve's minimum value was the point of interest for analysis, as it measured the resonant frequency at a specific experiment time. The difference between this frequency and the one at t=0 was used to identify sensor mass changes caused by mass adsorption. Monte Carlo simulations was used to evaluate uncertainties of the point of interest, with 1000 iterations for each sensor in both groups at each time interval. The resulting dataset contained MBS resonant frequency values and their uncertainties, wich can then be represented as a function of time, as in Figure 4 \label{lagergren_T4}. 
+A hash column was created as a reference field for analysis, combining the group (test or control), sensor number, and signal acquisition time (e.g., T-4-30). Custom software processed the signal versus frequency data, selecting values around the estimated peak and fitting an asymmetric Lorentzian model to the data, as shown in Figure 3. The curve's minimum value was the point of interest for analysis, as it measured the resonant frequency at a specific experiment time. The difference between this frequency and the one at t=0 was used to identify sensor mass changes caused by mass adsorption. Monte Carlo simulations were used to evaluate uncertainties of the point of interest, with 1000 iterations for each sensor in both groups at each time interval. The resulting dataset contained MBS resonant frequency values and their uncertainties, which can then be represented as a function of time, as in Figure 4. 
 
 ![MBS singal versus frquency data from network analyzer. The continuous line represents the asymmetric Lorentzian model fitted to data. Resonant frequency is representede by the black dot. \label{fig:points_of_interest}](T-4-30-Points_of_interest.png)
 
@@ -106,35 +107,33 @@ $$
 f(t) = f(0) \left(1 - ae^{-ct} \right).
 $$
 
-
-
-
-![MBS resonant frequency for test sensor. The continuous line represents the Lagergren's model fitted to data. Parameters of the model are highlighted. \label{fig:lagergren_T4}](Lagergren_T4.png)
+![MBS resonant frequency for a test sensor. The continuous line represents the Lagergren's model fitted to data. Parameters of the model are highlighted. \label{fig:lagergren_T4}](Lagergren_T4.png)
 
 The bootstrap method was applied to obtain randomly selected data points for the classifier, generating an 8000-point dataset (4000 for each group). This dataset used 80% of the data as the training subset and the remaining 20% as the testing subset. An Extreme Gradient Boosting (XGBoost) algorithm was trained and tuned, considering various parameters such as maximum depth, learning rate, and number of estimators, with five-fold cross-validation [@chen67:2016; @xgboost68:2024].
 
 # Usage
 
-The application is divided into two parts. The first consists of a data analysis routine that captures data from folders and applies fitting techniques to obtain the difference between fundamental frequency (t=0 minutes) and final frequency (t=30 minutes). The second part is the classifier routine, which imports the result dataset from the analysis script and trains the XGBost algorithm. If one already has delta frequency data, it is possible to use the exported model available at the repository to obtain a diagnosis. Templates and examples can be found in the [project repository](https://github.com/andreatta-ale/external-agents-detector).
+Analix is provided in a Jupyter notebook, and the application is divided in two parts. The first consists of a data analysis routine that captures data from folders and applies fitting techniques to obtain the difference between the resonant frequency t=0 and t=30 minutes. The second part is the classifier routine, which imports the dataset from the analysis script and trains the XGBost algorithm. It is then possible to use the trained model to obtain a diagnosis from newly acquired MBS data. Templates and examples can be found in the [project repository](https://github.com/andreatta-ale/external-agents-detector).
 
-To use the software, network analizer results must be inside a folder, split into *C* and *T* subfolders (control and test). Once the notebook is started, after packages are imported, a window pops up, where it is possible to select the main folder where *C* and *T* subfolders are stored. The notebook can be run cell by cell or in run-all mode. A CSV file that can be imported to the classifier routine will be exported to the result folder. A file named *I_am_here_to_test_the_model.ipynb* is also available to test results either from full experiments or random results from other sources. 
+To use the software, network analizer results must be inside a folder, split into *C* and *T* subfolders (control and test). Once the notebook is started, after packages are imported, a window pops up, where it is possible to select the main folder where *C* and *T* subfolders are stored. The notebook can be run cell by cell or in run-all mode. A CSV file that can be imported to the classifier routine will be exported to the result folder. A file named *I_am_here_to_test_the_model.ipynb* is also available to evaluate results either from full experiments or random results from other sources. 
 
 
 # Discussion
 
-For the case studied in this project, adjusting network analyzer data to the asymmetric Lorentzian model for all sensor datasets resulted in a clustering of parameters from each modeling iteration, accompanied by uncertainty values. This approach was the basis for a Monte Carlo simulation, where parameters and uncertainties were applied, producing a dataset optimized for minimum signal value at a specific frequency. Subsequent analysis revealed frequency shifts in test sensor data, which were adjusted to the Lagergren equation model to obtain $\Delta{f}$ values. These shifts were observable in graphs depicting data curves adjusted to the Lagergren model, highlighting distinctions between sensor groups. 
-
-![Frequency shift by group. \label{fig:freq_shift_by_group}](freq_shift_by_group.png)
+Figure 5 illustrates the separation of resonant frequency bands between the test and control sensors, becoming distinct after 15 minutes of measurement. These bands are delineated by three curves within each group. For the control group, the upper and lower boundaries are defined by the curves corresponding to sensors 1 and 2, respectively, while sensor 15 is represented by the central curve, highlighted in orange. Similarly, for the test group, the boundaries are formed by the curves of sensors 4 and 6, with the central curve, corresponding to sensor 5, highlighted in blue, effectively dividing the region.
 
 
-The Bootstrap method was employed to generate a larger dataset, showcasing significant separation between control and test data means, especially at last run (t=30), despite an indistinct zone. This expanded dataset was utilized to train an XGBoost classifier model. The model's performance was evaluated using a confusion matrix, revealing overfitting due to the small original dataset. Despite limitations in data availability, the proposed strategy proved effective in differentiating sensor groups, underscoring the importance of predictive technologies in rapidly diagnosing viral diseases. 
-
-![Frequency shift by group - Bootstrapped. \label{fig:freq_shift_by_group_bsd}](freq_shift_by_group-bsd.png)
+![Frequency shift by group over time. The area divided by the highlighted curve is formed by control and test sensors' result. At the end of the experiment, group separation is evident. \label{fig:freq_shift_by_group}](freq_shift_by_group.png)
 
 
+This separation becomes even clearer in Figure 6, which demonstrates how the resonant frequency shift increases over time. On the left, it is noticeable that the frequency varies within the collected data, but this variation is not time-dependent. However, when viewed over time, the control sensors displayed a stable trend, whereas the test sensors exhibited significant variation in resonant frequency.  
+
+![Frequency shift by group and time. The left panel shows the range of resonant frequency variation observed for each group. The right panel presents the same range over time, revealing the frequency shift at each time step. \label{fig:freq_shift_by_group_bsd}](freq_shift_by_group-bsd.png)
 
 
-This study proposes further exploration by extrapolating analyses to other recombinant proteins beyond SARS-CoV-2, and extending applications to detecting harmful bacteria in medical and veterinary contexts. Additionally, experiments on sensors of different formats are suggested to assess the computational approach's sensitivity to SME geometry variations, offering avenues for future research and development in disease detection and classification. The source code can be adapted and tested in different sensing and measurement systems to achieve this.
+The proposed strategy proved effective in differentiating sensor groups, highlighting the importance of predictive technologies in the rapid diagnosis of viral diseases.
+
+In this context, Analix can serve as a valuable tool in the development of MBS for detecting other recombinant proteins beyond SARS-CoV-2, with potential applications extending to the detection of harmful bacteria in medical and veterinary settings. Additionally, Analix can assist in interpreting results from experiments involving sensors of different formats, aiding in the assessment of sensitivity to MBS geometry variations. This opens up new avenues for future research and development in disease detection. The source code can be adapted to various sensing and measurement systems, further expanding the range of possible applications for Analix.
 
 # Code review
 
