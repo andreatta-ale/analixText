@@ -107,6 +107,8 @@ $$
 f(t) = f(0) \left(1 - ae^{-ct} \right).
 $$
 
+The displacement on resonant frequency was then estimated by $\Delta f_t = f_{30} - f_{0}$.
+
 ![MBS resonant frequency for a test sensor. The continuous line represents the Lagergren's model fitted to data. Parameters of the model are highlighted. \label{fig:lagergren_T4}](Lagergren_T4.png)
 
 The bootstrap method was applied to obtain randomly selected data points for the classifier, generating an 8000-point dataset (4000 for each group). This dataset used 80% of the data as the training subset and the remaining 20% as the testing subset. An Extreme Gradient Boosting (XGBoost) algorithm was trained and tuned, considering various parameters such as maximum depth, learning rate, and number of estimators, with five-fold cross-validation [@chen67:2016; @xgboost68:2024].
@@ -123,7 +125,7 @@ To use the software, network analizer results must be inside a folder, split int
 Figure 5 illustrates the separation of resonant frequency bands between the test and control sensors, becoming distinct after 15 minutes of measurement. These bands are delineated by three curves within each group. For the control group, the upper and lower boundaries are defined by the curves corresponding to sensors 1 and 2, respectively, while sensor 15 is represented by the central curve, highlighted in orange. Similarly, for the test group, the boundaries are formed by the curves of sensors 4 and 6, with the central curve, corresponding to sensor 5, highlighted in blue, effectively dividing the region.
 
 
-![Frequency shift by group over time. The area divided by the highlighted curve is formed by control and test sensors' result. At the end of the experiment, group separation is evident. \label{fig:freq_shift_by_group}](freq_shift_by_group.png)
+![Frequency shift by group over time. The area devided by the highlighted curves represents the result of the control and test sensors. By the end of the experiment, the separation between the groups becomes evident. \label{fig:freq_shift_by_group}](freq_shift_by_group.png)
 
 
 This separation becomes even clearer in Figure 6, which demonstrates how the resonant frequency shift increases over time. On the left, it is noticeable that the frequency varies within the collected data, but this variation is not time-dependent. However, when viewed over time, the control sensors displayed a stable trend, whereas the test sensors exhibited significant variation in resonant frequency.  
@@ -281,13 +283,14 @@ combined_df.head()
     +----------------+-----------------+----------+-------+-------+-------+
     
 
-Split Lorentzian function, used to fit the model to data:
+Split Lorentzian function, used to fit the model to MBS signal vs frequency data, is given by
 
-$f(x; A, \mu, \sigma, \sigma_r) = \frac{2 A}{\pi (\sigma+\sigma_r)} \big[\frac{\sigma^2}{(x - \mu)^2 + \sigma^2} * H(\mu-x) + \frac{\sigma_r^2}{(x - \mu)^2 + \sigma_r^2} * H(x-\mu)\big] + (m x + b)$
+$$
+f(x; A, \mu, \sigma, \sigma_r) = \frac{2 A}{\pi (\sigma+\sigma_r)} \big[\frac{\sigma^2}{(x - \mu)^2 + \sigma^2} * H(\mu-x) + \frac{\sigma_r^2}{(x - \mu)^2 + \sigma_r^2} * H(x-\mu)\big] + (m x + b).
+$$
 
 The function fits a Lorentzian model to each experimental dataset and generates an evaluation dataset based on this model. After fitting, it uses Monte Carlo simulation to optimize and identify the key point of interest: the minimized frequency, which assesses the displacement over time during the experiment.
 
-For each time instance, a graph shows the original data, the accuracy rate between the average frequency from the Monte Carlo simulation and the minimized average frequency, and the fitted curve overlaid on the original data. The graph also highlights these values and marks the minimal point from the original data.
 
 
 #### Running the fit model builder and the first outputs:
@@ -345,14 +348,6 @@ eval_df, param_df = process_data(combined_df, log_file)
     Accuracy of estimated frequency mean / SMC     0.9999343005633774
     ---------------------------------------------  ----------------------
 
-   
-![Initial data curve from sensor C-1-0.](output_17_2.png)
-
-![Accuracy between LMFIT frequency mean and SMC optimized frequency mean for sensor C-1-0.](output_17_4.png)
-    
-![Signal by frequency: Lorentz fucntion fit and points of interest of sensor C-1-0.](output_17_5.png)
-    
-
 
     Eval appended.
     --------------------------------
@@ -360,13 +355,8 @@ eval_df, param_df = process_data(combined_df, log_file)
     (...)
 
 
-To obtain a model for frequency decay over time, a Lagergren model is applied to minimized data. A detailed report on the model's fit parameters is displayed. 
+A Lagergren model is fitted to the MBS resonant frequency versus time data to obtain a model for frequency shift over time. A detailed report on the model's fit parameters is displayed.
 
-
-![Minimized frequency mean by time to sensor C-1-0.](output_22_0.png)
-       
-![Lagergren model by time to sensor C-1-0.](output_22_1.png)
-    
 
 
     Summary - Sensor 1  - Control
