@@ -38,7 +38,7 @@ authors:
     affiliation: 1
 
 affiliations:
-  - name: Universidade de Caxias do Sul, 95070-560, Caxias do SUl, RS, Brazil
+  - name: Universidade de Caxias do Sul, 95070-560, Caxias do Sul, RS, Brazil
     index: 1
 
 date: 29 July 2024
@@ -47,11 +47,11 @@ bibliography: paper.bib
 
 # Summary
 
-Generating, plotting, and analyzing sensor's data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is software that performs the analysis of data from magnetoelastic sensors subjected to an environment containing an external agent (such as SARS-CoV-2 virus). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. In developing magnetoelastic sensors with an active surface, these are divided into test and control groups. The test sensors are exposed to a medium containing recombinant protein of SARS-CoV-2, and their response in frequency spaceis registered. Control sensors are tested the same way, but exposed to a medium without the recombinant protein, so no major resonant frequency change is expected. The Analix software precisely determined the sensors' resonant frequency, this allow a safe and fast way to diagnose the presence of an external agent. A machine learning classifier generated a portable model applicable to different scenarios. 
+Generating, plotting, and analyzing sensor's data is time-consuming. In a context where the demand for rapid diagnostics is increasing, the assistance of intelligent processes that abstract a significant portion of the work is essential. Analix is a software that analyzes data from magnetoelastic sensors subjected to an environment containing an external agent (such as the SARS-CoV-2 virus). Magnetoelastic sensors have a fundamental vibration frequency, which decreases as their mass increases. In developing magnetoelastic sensors with an active surface, these are divided into test and control groups. The test sensors are exposed to a medium containing recombinant protein of SARS-CoV-2, and their response in frequency spaceis registered. Control sensors are tested the same way, but exposed to a medium without the recombinant protein, so no major resonant frequency change is expected. The Analix software precisely determined the sensors' resonant frequency and this allow a safe and fast way to diagnose the presence of an external agent. A machine learning classifier generated a portable model applicable to different scenarios. 
 
 # Statement of need
 
-The primary objective of this work is to develop software for analyzing data from magnetoelastic sensors, focusing on the efficient detection of pathogens. The software aims to provide a robust tool for rapidly and accurately identifying pathogens that threaten public health, such as viruses and bacteria, using advanced techniques such as statistical data analysis and machine learning algorithms.
+The primary objective of this work is to develop a software for analyzing data from magnetoelastic sensors, focusing on the efficient detection of pathogens. The software aims to provide a robust tool for rapidly and accurately identifying pathogens that threaten public health, such as viruses and bacteria, using advanced techniques such as statistical data analysis and machine learning algorithms.
 
 The relevance of this approach is evident when considering the backdrop of the pandemic scenario that developed between 2020 and 2022, which continues to manifest its effects even today. Such a context has demonstrated the need for tools that enable the rapid diagnosis of certain diseases, such as COVID-19 and other viral infections, to be obtained swiftly, with high detection efficiency and at a reduced cost.
 
@@ -88,7 +88,7 @@ The sensors, obtained from Metglas 2826MB3 by Metglas Company, were fabricated i
 Figure 1 shows a schematic model of how the reading system is assembled and the measurement of frequency shift after external agents adsorption. 
 
 
-![Schematic model of the detection system using magnetoelastic biosensors, showing resonant frequency change $\Delta f$ upon an external agend adsorption on MBS surface. \label{fig:sensor_reading}](schema.png)
+![Schematic model of the detection system using magnetoelastic biosensors and a network analyzer, showing resonant frequency change $\Delta f$ upon an external agend adsorption on MBS surface. \label{fig:sensor_reading}](schema.png)
 
 
 A dataset comprising two groups, test and control, each containing data from three sensors, is used to illustrate the application of Analix. The test sensors were exposed to a medium containing recombinant proteins of the SARS-CoV-2 virus, whereas the control sensors were placed in an inert medium. Each sensor underwent a 30-minute measurement cycle using a network analyzer, with data collected every 5 minutes, including t = 0, resulting in 7 subsets of data per sensor, with 201 readings per group. The frequency range tested was between 430,000 Hz and 460,000 Hz, encompassing the characteristic resonance frequency of the sensors. The final dataset consisted of frequency and signal data from all sensor cycles for each group, totaling 8442 rows, as shown in Figure 2. 
@@ -99,9 +99,9 @@ A dataset comprising two groups, test and control, each containing data from thr
 
 A hash column was created as a reference field for analysis, combining the group (test or control), sensor number, and signal acquisition time (e.g., T-4-30). Custom software processed the signal versus frequency data, selecting values around the estimated peak and fitting an asymmetric Lorentzian model to the data, as shown in Figure 3. The curve's minimum value was the point of interest for analysis, as it measured the resonant frequency at a specific experiment time. The difference between this frequency and the one at t=0 was used to identify sensor mass changes caused by mass adsorption. Monte Carlo simulations were used to evaluate uncertainties of the point of interest, with 1000 iterations for each sensor in both groups at each time interval. The resulting dataset contained MBS resonant frequency values and their uncertainties, which can then be represented as a function of time, as in Figure 4. 
 
-![MBS singal versus frquency data from network analyzer. The continuous line represents the asymmetric Lorentzian model fitted to data. Resonant frequency is representede by the black dot. \label{fig:points_of_interest}](T-4-30-Points_of_interest.png)
+![MBS signal versus frequency data from network analyzer. The continuous line represents the asymmetric Lorentzian model fitted to data. Resonant frequency is represented by the black dot. \label{fig:points_of_interest}](T-4-30-Points_of_interest.png)
 
-Lagergren’s model for pseudo-first order adsorption was employed to fit the frequency data over time, facilitating a precise comparison of frequency shifts between test and control sensors [@revellame71:2020]. With model appplied to data, it is possible to obtain the resonant frequency at a certain time using parameters $f_0$, $a$ and $c$, from Lagergren's equation, given by  
+Lagergren’s model for pseudo-first order adsorption was employed to fit the frequency data over time, facilitating a precise comparison of frequency shifts between test and control sensors [@revellame71:2020]. With model appplied to data, as demonstrated by Figure 4, it is possible to obtain the resonant frequency at a certain time using parameters $f_0$, $a$ and $c$, from Lagergren's equation, given by  
 
 $$
 f(t) = f(0) \left(1 - ae^{-ct} \right).
@@ -133,7 +133,7 @@ This separation becomes even clearer in Figure 6, which demonstrates how the res
 ![Frequency shift by group and time. The left panel shows the range of resonant frequency variation observed for each group. The right panel presents the same range over time, revealing the frequency shift at each time step. \label{fig:freq_shift_by_group_bsd}](freq_shift_by_group-bsd.png)
 
 
-The proposed strategy proved effective in differentiating sensor groups, highlighting the importance of predictive technologies in the rapid diagnosis of viral diseases.
+The proposed strategy proved effective in differentiating test and control sensors groups, highlighting the importance of predictive technologies in the rapid diagnosis of viral diseases.
 
 In this context, Analix can serve as a valuable tool in the development of MBS for detecting other recombinant proteins beyond SARS-CoV-2, with potential applications extending to the detection of harmful bacteria in medical and veterinary settings. Additionally, Analix can assist in interpreting results from experiments involving sensors of different formats, aiding in the assessment of sensitivity to MBS geometry variations. This opens up new avenues for future research and development in disease detection. The source code can be adapted to various sensing and measurement systems, further expanding the range of possible applications for Analix.
 
@@ -289,7 +289,7 @@ $$
 f(x; A, \mu, \sigma, \sigma_r) = \frac{2 A}{\pi (\sigma+\sigma_r)} \big[\frac{\sigma^2}{(x - \mu)^2 + \sigma^2} * H(\mu-x) + \frac{\sigma_r^2}{(x - \mu)^2 + \sigma_r^2} * H(x-\mu)\big] + (m x + b).
 $$
 
-The function fits a Lorentzian model to each experimental dataset and generates an evaluation dataset based on this model. After fitting, it uses Monte Carlo simulation to optimize and identify the key point of interest: the minimized frequency, which assesses the displacement over time during the experiment.
+The function fits a Lorentzian model to each experimental dataset and generates an evaluation dataset based on this model. After fitting, it uses Monte Carlo simulation to optimize and identify the key point of interest: MBS resonant frequency, which assesses the displacement over time during the experiment.
 
 
 
